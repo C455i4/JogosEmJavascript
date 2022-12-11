@@ -1,0 +1,66 @@
+<meta charset="UTF-8">
+
+<input type="digite su sugeston">
+<button>compare com a minha</button>
+
+<script>
+
+    function sorteia(){
+        return Math.round(Math.random() * 10);
+    }
+
+    function sorteiaNumeros(quantidade){
+        var segredos = [];
+        var numero = 1;
+        
+        while(numero <= quantidade){
+            var numeroaleatorio = sorteia();
+            if(numeroaleatorio !== 0){
+                    var achou = false;
+
+                for(var i=0; i< segredos.length; i++){
+                    if(segredos[i] == numeroaleatorio){
+                        achou = true;
+                        break;
+                    }
+                }
+
+                if(achou == false){
+                    segredos.push(sorteia());
+                    numero ++;
+                }  
+            }
+        }
+
+        return segredos;
+    }
+
+
+    var segredos = sorteiaNumeros(3);
+
+    var input = document.querySelector("input");
+    input.focus();
+
+    function compara(){
+        var achou = false;
+        for(var i=0; i < segredos.length; i++){
+            if(input.value == segredos[i]){
+                alert("VOCÊ acertou");
+                achou = true;
+                break;
+            }
+        }
+        if(achou == false){
+                alert("Você errrooouuuuuuu");
+        }
+        
+        input.value = "";
+        input.focus();
+    }
+    
+
+    var botao = document.querySelector("button");
+    botao.onclick = compara;
+
+
+</script>
